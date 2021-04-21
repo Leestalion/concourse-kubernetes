@@ -22,7 +22,7 @@ jobs:
       uses: hashicorp/setup-terraform@v1
   
     - name: generate SSH for terraform kubones files
-      run: ssh-keygen -f ~/.ssh/id_rsa.pub -b 512
+      run: ssh-keygen -f ~/.ssh/id_rsa.pub -t rsa -b 2048
     
     - name: Terraform init
       run: |
