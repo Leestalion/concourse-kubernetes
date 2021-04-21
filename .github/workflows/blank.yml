@@ -18,6 +18,6 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     - name: Terraform initialization and plan
       run: |
-        cd terraform
+        ls
         terraform init
         terraform plan
