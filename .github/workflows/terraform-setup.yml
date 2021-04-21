@@ -68,7 +68,7 @@ jobs:
       run: |
         git config --local user.email "lemarrecthomas@gmail.com"
         git config --local user.name "Leestalion"
-        git add --all
+        git add /terraform/tf.json
         if [-z "$(git status --porcelain)"]; then
            echo "::set-output name=push::false"
         else
