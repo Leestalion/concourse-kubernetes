@@ -13,6 +13,7 @@ limitations under the License.
 
 variable "cluster_name" {
   description = "Name of the cluster"
+  default     = "github-actions-test"
 }
 
 variable "worker_os" {
