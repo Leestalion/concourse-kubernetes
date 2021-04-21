@@ -23,6 +23,6 @@ jobs:
     # terraform init and plan
     - name: Terraform initialization and plan
       run: |
-        ls
+        cd terraform
         terraform init
         terraform plan
