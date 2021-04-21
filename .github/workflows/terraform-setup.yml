@@ -37,7 +37,9 @@ jobs:
         terraform plan -lock=false -out terraform.plan
     
     - name: save terraform state file in json format
-      run: terraform show -json terraform.plan > terraform.json
+      run: |
+        cd terraform
+        terraform show -json terraform.plan > terraform.json
 
 #     - name: Terraform apply
 #       env:
