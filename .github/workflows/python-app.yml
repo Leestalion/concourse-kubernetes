@@ -20,6 +20,4 @@ jobs:
     - name: install terraform    
       uses: hashicorp/setup-terraform@v1
     - run: |
-        terraform -version
-        
-    - run: ls
+        terraform init
