@@ -21,4 +21,5 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     - run: |
         terraform -version
-        ls
+        
+    - run: ls
