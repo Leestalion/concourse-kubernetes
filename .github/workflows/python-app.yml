@@ -20,5 +20,5 @@ jobs:
     - name: install terraform    
       uses: hashicorp/setup-terraform@v1
     - run: |
-        cd ./kubeone_1.2.1_linux_amd64/examples/terraform
+        cd ./kubeone_1.2.1_linux_amd64/examples/terraform/aws
         ls
