@@ -20,9 +20,8 @@ jobs:
 
     - name: install terraform    
       uses: hashicorp/setup-terraform@v1
-
-    - name: generate SSH for terraform kubones files
-      run: ssh-keygen -f ~/.ssh/id_rsa.pub -b 1024
+      with:
+        terraform_wrapper: false
 
     - name: Terraform init
       run: |
@@ -35,7 +34,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         cd terraform
-        terraform plan
+        terraform plan -lock=false -out terraform.tfplan
       
     # destroy the resources if they were created accidentally before
     - name: Terraform destroy
@@ -45,11 +44,14 @@ jobs:
       run: |
         cd terraform
         terraform destroy -auto-approve
-      
-    - name: Terraform apply
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        cd terraform
-        terraform apply -auto-approve
+    
+    - name: save terraform state file in json format
+      run: terraform show -json terraform.tfplan > terraform.json
+
+#     - name: Terraform apply
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       run: |
+#         cd terraform
+#         terraform apply -auto-approve
