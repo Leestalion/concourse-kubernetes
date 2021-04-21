@@ -1,0 +1,46 @@
+name: terraform workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-setup:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: install kubeone
+      run: curl -sfL get.kubeone.io | sh
+
+    - name: install terraform    
+      uses: hashicorp/setup-terraform@v1
+
+    - name: generate SSH for terraform kubones files
+      run: ssh-keygen -f ~/.ssh/id_rsa.pub -b 1024
+
+    - name: Terraform init
+      run: |
+        cd terraform
+        terraform init
+        
+    - name: Terraform plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        cd terraform
+        terraform plan
+      
+    - name: Terraform apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        cd terraform
+        terraform apply -auto-approve
