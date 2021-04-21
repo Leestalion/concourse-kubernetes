@@ -40,6 +40,14 @@ jobs:
       run: |
         cd terraform
         terraform show -json terraform.plan > terraform.json
+    
+    # Commit to the current repo to get the new terraform.json file
+    - name: stage changed files
+      run: git add .
+    - name: commit changed files
+      run: git commit -m "Auto updating TODO.txt"
+    - name: push code to master
+      run: git push origin HEAD:Leestalion-patch-2
 
 #     - name: Terraform apply
 #       env:
