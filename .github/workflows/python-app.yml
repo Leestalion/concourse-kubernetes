@@ -16,4 +16,6 @@ jobs:
     
     steps:
     - name: install kubeone
-      run: curl -sfL get.kubeone.io | sh
+      run: |
+        curl -sfL get.kubeone.io | sh
+        kubeone --version
