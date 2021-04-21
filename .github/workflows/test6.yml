@@ -1,0 +1,28 @@
+name: terraform workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Default action
+    - uses: actions/checkout@v2
+    # Install kubeone
+    - name: install kubeone
+      run: curl -sfL get.kubeone.io | sh
+    # Install terraform
+    - name: install terraform    
+      uses: hashicorp/setup-terraform@v1
+    # terraform init and plan
+    - name: Terraform initialization and plan
+      run: |
+        cd terraform
+        terraform init
+        terraform plan
