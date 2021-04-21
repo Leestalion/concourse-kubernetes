@@ -19,3 +19,6 @@ jobs:
       run: |
         curl -sfL get.kubeone.io | sh
         echo "kubeone installation successful"
+    - name: install terraform    
+      uses: hashicorp/setup-terraform@v1
+    - run: terraform -version
