@@ -40,19 +40,36 @@ jobs:
       run: |
         cd terraform
         terraform show -json terraform.plan > terraform.json
-    
-    # Commit to the current repo to get the new terraform.json file
-    - name: stage changed files
-      run: git add .
-    - name: commit changed files
-      run: git commit -m "Auto updating TODO.txt"
-    - name: push code to master
-      run: git push origin HEAD:Leestalion-patch-2
 
-#     - name: Terraform apply
-#       env:
-#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#       run: |
-#         cd terraform
-#         terraform apply -auto-approve
+    - name: Terraform apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        cd terraform
+        terraform apply -auto-approve
+    
+    - name: produce terraform output
+      run: |
+        cd terraform
+        terraform output -json > tf.json
+    
+    # Use git commit and push to 
+    - name: Commit files
+      id: commit
+      run: |
+        git config --local user.email "lemarrecthomas@gmail.com"
+        git config --local user.name "Leestalion"
+        git add --all
+        if [-z "$(git status --porcelain)"]; then
+           echo "::set-output name=push::false"
+        else
+           git commit -m "Add changes" -a
+           echo "::set-output name=push::true"
+        fi
+      shell: bash
+    - name: Push changes
+      if: steps.commit.outputs.push == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
