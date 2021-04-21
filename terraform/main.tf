@@ -216,9 +216,14 @@ resource "aws_elb" "control_plane" {
 }
 
 #################################### SSH KEY ###################################
+resource "tls_private_key" "ssh_private_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
 resource "aws_key_pair" "deployer" {
   key_name   = "${var.cluster_name}-deployer-key"
-  public_key = file(var.ssh_public_key_file)
+  public_key = tls_private_key.ssh_private_key.public_key_openssh
 }
 
 ##################################### IAM ######################################
