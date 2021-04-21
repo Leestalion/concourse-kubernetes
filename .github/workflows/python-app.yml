@@ -21,7 +21,6 @@ jobs:
       uses: hashicorp/setup-terraform@v1
     - name: Terraform initialization and plan
       run: |
-        cd ./kubeone_1.2.1_linux_amd64/examples/terraform/aws
+        cd terraform
         terraform init
         terraform plan
-    
