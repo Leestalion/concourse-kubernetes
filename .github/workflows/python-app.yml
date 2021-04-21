@@ -19,6 +19,9 @@ jobs:
       run: curl -sfL get.kubeone.io | sh
     - name: install terraform    
       uses: hashicorp/setup-terraform@v1
-    - run: |
+    - name: Terraform initialization and plan
+      run: |
         cd ./kubeone_1.2.1_linux_amd64/examples/terraform/aws
         terraform init
+        terraform plan
+    
