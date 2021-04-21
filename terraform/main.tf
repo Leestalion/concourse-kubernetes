@@ -89,7 +89,7 @@ resource "aws_subnet" "public" {
   tags = tomap({
     Name = "${var.cluster_name}-${data.aws_availability_zones.available.names[count.index]}",
     Cluster = var.cluster_name,
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
 
@@ -102,7 +102,7 @@ resource "aws_security_group" "common" {
 
   tags = tomap({
     Cluster = var.cluster_name,
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
 
@@ -211,7 +211,7 @@ resource "aws_elb" "control_plane" {
 
   tags = tomap({
     Cluster = var.cluster_name,
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
 
@@ -285,7 +285,7 @@ resource "aws_instance" "control_plane" {
 
   tags = tomap({
     Name = "${var.cluster_name}-cp-${count.index + 1}",
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
 
@@ -307,7 +307,7 @@ resource "aws_instance" "static_workers1" {
 
   tags = tomap({
     Name = "${var.cluster_name}-workers1-${count.index + 1}",
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
 
@@ -330,6 +330,6 @@ resource "aws_instance" "bastion" {
   tags = tomap({
     Cluster = var.cluster_name,
     Name = "${var.cluster_name}-bastion",
-    local.kube_cluster_tag = "shared",
+    (local.kube_cluster_tag) = "shared",
   })
 }
