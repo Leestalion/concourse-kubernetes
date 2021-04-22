@@ -16,4 +16,4 @@ jobs:
 
       - name: reset kubeone
         run: |
-          kubeone reset --manifest kubeone/kubeone.yaml -t terraform/tf.json
+          kubeone reset --manifest kubeone/kubeone.yml -t terraform/tf.json
