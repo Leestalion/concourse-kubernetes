@@ -68,7 +68,6 @@ jobs:
       run: |
         git config --local user.email "lemarrecthomas@gmail.com"
         git config --local user.name "Leestalion"
-        git pull origin/Leestalion-patch-2 Leestalion-patch-2
         git add terraform/tf.json
         if [-z "$(git status --porcelain)"]; then
            echo "::set-output name=push::false"
@@ -82,4 +81,3 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
          github_token: ${{ secrets.GITHUB_TOKEN }}
-         branch: ${{ github.head_ref }}
