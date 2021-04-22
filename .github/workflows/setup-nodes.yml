@@ -17,3 +17,4 @@ jobs:
       - name: see pods
         run: |
           kubectl --kubeconfig=github-actions-test-kubeconfig get nodes
+          kubectl --kubeconfig=github-actions-test-kubeconfig get -n kube-system machinedeployment
