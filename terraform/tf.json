@@ -8,7 +8,7 @@
       }
     ],
     "value": {
-      "endpoint": "github-actions-test-api-lb-64703250.eu-west-3.elb.amazonaws.com"
+      "endpoint": "github-actions-test-api-lb-1721612271.eu-west-3.elb.amazonaws.com"
     }
   },
   "kubeone_hosts": {
@@ -50,20 +50,20 @@
     ],
     "value": {
       "control_plane": {
-        "bastion": "35.180.33.208",
+        "bastion": "35.180.210.156",
         "bastion_port": 22,
         "bastion_user": "ubuntu",
         "cloud_provider": "aws",
         "cluster_name": "github-actions-test",
         "hostnames": [
-          "ip-172-31-16-139.eu-west-3.compute.internal",
-          "ip-172-31-17-109.eu-west-3.compute.internal",
-          "ip-172-31-18-104.eu-west-3.compute.internal"
+          "ip-172-31-28-184.eu-west-3.compute.internal",
+          "ip-172-31-29-135.eu-west-3.compute.internal",
+          "ip-172-31-30-136.eu-west-3.compute.internal"
         ],
         "private_address": [
-          "172.31.16.139",
-          "172.31.17.109",
-          "172.31.18.104"
+          "172.31.28.184",
+          "172.31.29.135",
+          "172.31.30.136"
         ],
         "ssh_agent_socket": "env:SSH_AUTH_SOCK",
         "ssh_port": 22,
@@ -101,7 +101,7 @@
     ],
     "value": {
       "workers1": {
-        "bastion": "35.180.33.208",
+        "bastion": "35.180.210.156",
         "bastion_port": 22,
         "bastion_user": "ubuntu",
         "hostnames": [],
@@ -316,9 +316,9 @@
             "isSpotInstance": false,
             "region": "eu-west-3",
             "securityGroupIDs": [
-              "sg-0e50a96427713539e"
+              "sg-0f021296f2f34d90f"
             ],
-            "subnetId": "subnet-04da4906aef83d5d8",
+            "subnetId": "subnet-04e25e215a33db7bf",
             "tags": {
               "github-actions-test-workers": ""
             },
@@ -332,7 +332,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjHqXYWCcfjNbXvOZTmZV686Y+nUe8nMJDt3gnzjT5RmdT/b9a/qlYMdbJJis2Cpdn3SD99igjH9X/xLtTgPO763LxZePWFcm6helG66yNJthU3UnYf626oQNzVJsXpaAUiUTeEaZuAGIFDEMsZtXXCbuHcIlqju2/KgQNQMguk0+xHHCmCS1/0LT5IN87S+nwmwLh/JBwIwncq5dAS0ALulFlp9ZjsafIq+xEjiZTB94vp/azGqOPC3mS71KE99YcWc0bWp7zIbNo5e7iL7kj9E49He+ff2roKitcfe3alYtJ5CArAWKcKRG3mAS9KECf4wX9wKXvCTPPIAB5ErRD2MhpNWl9fnsIdRtjZDHsO0sFjxZ97ajFkDdUB7n/Y0J/GQ7FB8bUAIDZijA1PXJq7iojtLn8ob8eKvwog0Hpc5D5+weVLK0v7r8QEy4UX1aW+VziD88IV2qm5JOvUz6NLUYI6JLWA0azWIS/l6V8VyMEcqVPVLlhepFcvrEwHK1MXEdM9bQmyAYBPFYW8L2xXX3VwIPlLqdeBx4PWTyRDCFyD9gmLf9KH7CFdt9iePfeblDVVHrNNzvxPtl9Jys9H2/itNsFFSAy//GzLo11VABFRKO4RYM4ZvvEHU4ocr2k8mMQzG0XU3i/tEvQKiO9Lc9c4AZRnrtvnpL2cBDvWw=="
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDO2yGf23k6z+W/7dzgGpxbpSkyoJWRIWI+CTwLnEIMEOwsNhshdOLmHk4AvthrUYkkX2yMCRCeOXcYWNUP8E2c/jq3vRG9zdZvMFw2rtHf2jnR4Enj+P4B5Cb6r8fkAZDA1T9Iv1PaavGAHzIYBeGgfe93BgUp8ApJbBXtMkQZ8SzUl0gOMvd+4BSTjhiH2Chppdd/SHsIPxxXzrZEjDPNkeaHTPndph8uLEifD6DkQ8wng4SPrAAJLofPMntOLIzN8fEF0ht3O2hLu6SMpDhMRwMvHw+9zTiBUgUZ7EXVe+i10BBEI32+C8E/YF6rQCwPepBElPjNgKzFKMS4V9638qnOfFZf0i8hDzCBZjgUF0iVtEuchMW8sJsvLkSj/KbavSwunSF31VLA/QXJOGLAm5Ctxcb05cl7lr1oSoIW5UCbSyrZtKu4R4wLLqX2C8QPEvArXQo/d0H8dVQ3J5ETVD/HQRN5mGEldA5MTbvFFdj5QXW/Q07c1M8qUqa5hVvNn+rO7IljJjQXv/u3z5145BayAghwGBkKLeRh5TCHQ9hfbJ9FYveqy/JkEqsJGhqwqUABJuWZLx+70XLDn01dcJ4IvnAORjUGeh0GyBlEMgMUDjr/+RNrb9GQpQn4RsU5Og5+05CZ2+IUkhMy1nvRe1+vAcVOM6t89I70+EiAew=="
           ]
         },
         "replicas": 1
@@ -352,9 +352,9 @@
             "isSpotInstance": false,
             "region": "eu-west-3",
             "securityGroupIDs": [
-              "sg-0e50a96427713539e"
+              "sg-0f021296f2f34d90f"
             ],
-            "subnetId": "subnet-0483acacda3ec844e",
+            "subnetId": "subnet-05d95bee736bfb447",
             "tags": {
               "github-actions-test-workers": ""
             },
@@ -368,7 +368,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjHqXYWCcfjNbXvOZTmZV686Y+nUe8nMJDt3gnzjT5RmdT/b9a/qlYMdbJJis2Cpdn3SD99igjH9X/xLtTgPO763LxZePWFcm6helG66yNJthU3UnYf626oQNzVJsXpaAUiUTeEaZuAGIFDEMsZtXXCbuHcIlqju2/KgQNQMguk0+xHHCmCS1/0LT5IN87S+nwmwLh/JBwIwncq5dAS0ALulFlp9ZjsafIq+xEjiZTB94vp/azGqOPC3mS71KE99YcWc0bWp7zIbNo5e7iL7kj9E49He+ff2roKitcfe3alYtJ5CArAWKcKRG3mAS9KECf4wX9wKXvCTPPIAB5ErRD2MhpNWl9fnsIdRtjZDHsO0sFjxZ97ajFkDdUB7n/Y0J/GQ7FB8bUAIDZijA1PXJq7iojtLn8ob8eKvwog0Hpc5D5+weVLK0v7r8QEy4UX1aW+VziD88IV2qm5JOvUz6NLUYI6JLWA0azWIS/l6V8VyMEcqVPVLlhepFcvrEwHK1MXEdM9bQmyAYBPFYW8L2xXX3VwIPlLqdeBx4PWTyRDCFyD9gmLf9KH7CFdt9iePfeblDVVHrNNzvxPtl9Jys9H2/itNsFFSAy//GzLo11VABFRKO4RYM4ZvvEHU4ocr2k8mMQzG0XU3i/tEvQKiO9Lc9c4AZRnrtvnpL2cBDvWw=="
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDO2yGf23k6z+W/7dzgGpxbpSkyoJWRIWI+CTwLnEIMEOwsNhshdOLmHk4AvthrUYkkX2yMCRCeOXcYWNUP8E2c/jq3vRG9zdZvMFw2rtHf2jnR4Enj+P4B5Cb6r8fkAZDA1T9Iv1PaavGAHzIYBeGgfe93BgUp8ApJbBXtMkQZ8SzUl0gOMvd+4BSTjhiH2Chppdd/SHsIPxxXzrZEjDPNkeaHTPndph8uLEifD6DkQ8wng4SPrAAJLofPMntOLIzN8fEF0ht3O2hLu6SMpDhMRwMvHw+9zTiBUgUZ7EXVe+i10BBEI32+C8E/YF6rQCwPepBElPjNgKzFKMS4V9638qnOfFZf0i8hDzCBZjgUF0iVtEuchMW8sJsvLkSj/KbavSwunSF31VLA/QXJOGLAm5Ctxcb05cl7lr1oSoIW5UCbSyrZtKu4R4wLLqX2C8QPEvArXQo/d0H8dVQ3J5ETVD/HQRN5mGEldA5MTbvFFdj5QXW/Q07c1M8qUqa5hVvNn+rO7IljJjQXv/u3z5145BayAghwGBkKLeRh5TCHQ9hfbJ9FYveqy/JkEqsJGhqwqUABJuWZLx+70XLDn01dcJ4IvnAORjUGeh0GyBlEMgMUDjr/+RNrb9GQpQn4RsU5Og5+05CZ2+IUkhMy1nvRe1+vAcVOM6t89I70+EiAew=="
           ]
         },
         "replicas": 1
@@ -388,9 +388,9 @@
             "isSpotInstance": false,
             "region": "eu-west-3",
             "securityGroupIDs": [
-              "sg-0e50a96427713539e"
+              "sg-0f021296f2f34d90f"
             ],
-            "subnetId": "subnet-0bf2fe99e57ecd0b1",
+            "subnetId": "subnet-06f5049990a89ed5c",
             "tags": {
               "github-actions-test-workers": ""
             },
@@ -404,7 +404,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjHqXYWCcfjNbXvOZTmZV686Y+nUe8nMJDt3gnzjT5RmdT/b9a/qlYMdbJJis2Cpdn3SD99igjH9X/xLtTgPO763LxZePWFcm6helG66yNJthU3UnYf626oQNzVJsXpaAUiUTeEaZuAGIFDEMsZtXXCbuHcIlqju2/KgQNQMguk0+xHHCmCS1/0LT5IN87S+nwmwLh/JBwIwncq5dAS0ALulFlp9ZjsafIq+xEjiZTB94vp/azGqOPC3mS71KE99YcWc0bWp7zIbNo5e7iL7kj9E49He+ff2roKitcfe3alYtJ5CArAWKcKRG3mAS9KECf4wX9wKXvCTPPIAB5ErRD2MhpNWl9fnsIdRtjZDHsO0sFjxZ97ajFkDdUB7n/Y0J/GQ7FB8bUAIDZijA1PXJq7iojtLn8ob8eKvwog0Hpc5D5+weVLK0v7r8QEy4UX1aW+VziD88IV2qm5JOvUz6NLUYI6JLWA0azWIS/l6V8VyMEcqVPVLlhepFcvrEwHK1MXEdM9bQmyAYBPFYW8L2xXX3VwIPlLqdeBx4PWTyRDCFyD9gmLf9KH7CFdt9iePfeblDVVHrNNzvxPtl9Jys9H2/itNsFFSAy//GzLo11VABFRKO4RYM4ZvvEHU4ocr2k8mMQzG0XU3i/tEvQKiO9Lc9c4AZRnrtvnpL2cBDvWw=="
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDO2yGf23k6z+W/7dzgGpxbpSkyoJWRIWI+CTwLnEIMEOwsNhshdOLmHk4AvthrUYkkX2yMCRCeOXcYWNUP8E2c/jq3vRG9zdZvMFw2rtHf2jnR4Enj+P4B5Cb6r8fkAZDA1T9Iv1PaavGAHzIYBeGgfe93BgUp8ApJbBXtMkQZ8SzUl0gOMvd+4BSTjhiH2Chppdd/SHsIPxxXzrZEjDPNkeaHTPndph8uLEifD6DkQ8wng4SPrAAJLofPMntOLIzN8fEF0ht3O2hLu6SMpDhMRwMvHw+9zTiBUgUZ7EXVe+i10BBEI32+C8E/YF6rQCwPepBElPjNgKzFKMS4V9638qnOfFZf0i8hDzCBZjgUF0iVtEuchMW8sJsvLkSj/KbavSwunSF31VLA/QXJOGLAm5Ctxcb05cl7lr1oSoIW5UCbSyrZtKu4R4wLLqX2C8QPEvArXQo/d0H8dVQ3J5ETVD/HQRN5mGEldA5MTbvFFdj5QXW/Q07c1M8qUqa5hVvNn+rO7IljJjQXv/u3z5145BayAghwGBkKLeRh5TCHQ9hfbJ9FYveqy/JkEqsJGhqwqUABJuWZLx+70XLDn01dcJ4IvnAORjUGeh0GyBlEMgMUDjr/+RNrb9GQpQn4RsU5Og5+05CZ2+IUkhMy1nvRe1+vAcVOM6t89I70+EiAew=="
           ]
         },
         "replicas": 1
@@ -418,9 +418,9 @@
       "string"
     ],
     "value": [
-      "ssh -J ubuntu@35.180.33.208 ubuntu@172.31.16.139",
-      "ssh -J ubuntu@35.180.33.208 ubuntu@172.31.17.109",
-      "ssh -J ubuntu@35.180.33.208 ubuntu@172.31.18.104"
+      "ssh -J ubuntu@35.180.210.156 ubuntu@172.31.28.184",
+      "ssh -J ubuntu@35.180.210.156 ubuntu@172.31.29.135",
+      "ssh -J ubuntu@35.180.210.156 ubuntu@172.31.30.136"
     ]
   }
 }
