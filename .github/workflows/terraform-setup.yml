@@ -1,0 +1,85 @@
+name: terraform workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-setup:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - name: install kubeone
+      run: curl -sfL get.kubeone.io | sh
+
+    - name: install terraform    
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_wrapper: false
+
+    - name: Terraform init
+      run: |
+        cd terraform
+        terraform init
+        
+    - name: Terraform plan
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        cd terraform
+        terraform plan -lock=false -out terraform.plan
+    
+    - name: save terraform state file in json format
+      run: |
+        cd terraform
+        terraform show -json terraform.plan > terraform.json
+
+#     - name: Terraform destroy
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       run: |
+#         cd terraform
+#         terraform destroy -auto-approve
+
+#     - name: Terraform apply
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       run: |
+#         cd terraform
+#         terraform apply -auto-approve
+    
+    - name: produce terraform output
+      run: |
+        cd terraform
+        terraform output -json > tf.json
+    
+    # Use git commit and push to 
+    - name: Commit files
+      id: commit
+      run: |
+        git config --local user.email "lemarrecthomas@gmail.com"
+        git config --local user.name "Leestalion"
+        git pull origin/Leestalion-patch-2 Leestalion-patch-2
+        git add terraform/tf.json
+        if [-z "$(git status --porcelain)"]; then
+           echo "::set-output name=push::false"
+        else
+           git commit -m "Add changes" -a
+           echo "::set-output name=push::true"
+        fi
+      shell: bash
+    - name: Push changes
+      if: steps.commit.outputs.push == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         branch: ${{ github.head_ref }}
