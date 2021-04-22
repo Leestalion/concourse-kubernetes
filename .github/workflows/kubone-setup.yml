@@ -1,0 +1,48 @@
+name: kubeone setup
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+      
+      - name: install kubeone
+        run: |
+          curl -sfL get.kubeone.io | sh
+      
+      # Set the ssh_auth_sock
+      - uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: apply kubeone cluster
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          kubeone apply --manifest kubeone/kubeone.yml -t terraform/tf.json
+
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "lemarrecthomas@gmail.com"
+          git config --local user.name "Leestalion"
+          git add github-actions-test-kubeconfig
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
