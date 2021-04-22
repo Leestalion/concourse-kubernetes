@@ -17,6 +17,8 @@ jobs:
       
       # Set the ssh_auth_sock
       - uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: apply kubeone cluster
         env:
