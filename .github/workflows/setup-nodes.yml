@@ -1,0 +1,18 @@
+name: nodes setup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: kubectl tool installer
+        uses: Azure\setup-kubectl@v1
+      
+      - name: see pods
+        run: |
+          kubctl pods
