@@ -10,8 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: kubectl tool installer
-        uses: Azure\setup-kubectl@v1
+      - name: install kubeone
+        run: |
+          curl -sfL get.kubeone.io | sh
       
       - name: see pods
         run: |
