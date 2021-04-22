@@ -223,7 +223,7 @@ resource "tls_private_key" "ssh_private_key" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "${var.cluster_name}-deployer-key"
-  public_key = tls_private_key.ssh_private_key.public_key_openssh
+  public_key = var.ssh_public_key
 }
 
 ##################################### IAM ######################################
