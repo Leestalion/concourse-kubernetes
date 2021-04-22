@@ -28,38 +28,38 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         cd terraform
-        terraform plan -lock=false -out state.tfplan
+        terraform plan -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}" -lock=false -out state.tfplan
 
-    - name: Terraform apply
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: |
-        cd terraform
-        terraform apply -auto-approve
+#     - name: Terraform apply
+#       env:
+#         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#       run: |
+#         cd terraform
+#         terraform apply -auto-approve
     
-    - name: produce terraform output
-      run: |
-        cd terraform
-        terraform output -json > tf.json
+#     - name: produce terraform output
+#       run: |
+#         cd terraform
+#         terraform output -json > tf.json
     
-    # Use git commit and push to 
-    - name: Commit files
-      id: commit
-      run: |
-        git config --local user.email "lemarrecthomas@gmail.com"
-        git config --local user.name "Leestalion"
-        git add terraform/tf.json
-        git add terraform/state.tfplan
-        if [-z "$(git status --porcelain)"]; then
-           echo "::set-output name=push::false"
-        else
-           git commit -m "Add changes" -a
-           echo "::set-output name=push::true"
-        fi
-      shell: bash
-    - name: Push changes
-      if: steps.commit.outputs.push == 'true'
-      uses: ad-m/github-push-action@master
-      with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
+#     # Use git commit and push to 
+#     - name: Commit files
+#       id: commit
+#       run: |
+#         git config --local user.email "lemarrecthomas@gmail.com"
+#         git config --local user.name "Leestalion"
+#         git add terraform/tf.json
+#         git add terraform/state.tfplan
+#         if [-z "$(git status --porcelain)"]; then
+#            echo "::set-output name=push::false"
+#         else
+#            git commit -m "Add changes" -a
+#            echo "::set-output name=push::true"
+#         fi
+#       shell: bash
+#     - name: Push changes
+#       if: steps.commit.outputs.push == 'true'
+#       uses: ad-m/github-push-action@master
+#       with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
