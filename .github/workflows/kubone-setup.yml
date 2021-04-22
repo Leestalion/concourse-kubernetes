@@ -20,7 +20,12 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
+          if [ -z "$SSH_AUTH_SOCK" ]; then
+            eval $(ssh-agent)
+            ssh-add
+          fi
           kubeone apply --manifest kubeone/kubeone.yml -t terraform/tf.json
+        shell: bash
 
       - name: Commit files
         id: commit
