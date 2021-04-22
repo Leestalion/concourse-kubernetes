@@ -17,7 +17,7 @@ jobs:
       
       - name: apply kubeone cluster
         run: |
-          kubeone apply --manifest kubeone/kubeone.yaml -t terraform/tf.json
+          kubeone apply --manifest kubeone/kubeone.yml -t terraform/tf.json
 
       - name: Commit files
         id: commit
