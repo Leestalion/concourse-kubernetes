@@ -1,0 +1,24 @@
+name: reset kubeone
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: install kubeone
+        run: |
+          curl -sfL get.kubeone.io | sh
+
+      - name: reset kubeone
+        run: |
+          kubeone reset --manifest kubeone/kubeone.yaml -t terraform/tf.json
