@@ -1,7 +1,7 @@
 name: terraform workflow
 
 on:
-  gollum
+  workflow_dispatch:
 
 jobs:
   terraform-setup:
