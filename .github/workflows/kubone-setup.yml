@@ -15,6 +15,9 @@ jobs:
         run: |
           curl -sfL get.kubeone.io | sh
       
+      # Set the ssh_auth_sock
+      - uses: webfactory/ssh-agent@v0.5.2
+      
       - name: apply kubeone cluster
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
