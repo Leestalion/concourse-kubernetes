@@ -1,10 +1,7 @@
 name: terraform workflow
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  gollum
 
 jobs:
   terraform-setup:
@@ -14,9 +11,6 @@ jobs:
     steps:
 
     - uses: actions/checkout@v2
-
-    - name: install kubeone
-      run: curl -sfL get.kubeone.io | sh
 
     - name: install terraform    
       uses: hashicorp/setup-terraform@v1
