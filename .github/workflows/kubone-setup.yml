@@ -1,10 +1,6 @@
-name: CI
+name: kubeone setup
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
   
 jobs:
@@ -14,3 +10,31 @@ jobs:
     steps:
 
       - uses: actions/checkout@v2
+      
+      - name: install kubeone
+        run: |
+          curl -sfL get.kubeone.io | sh
+      
+      - name: apply kubeone cluster
+        run: |
+          kubeone apply --manifest kubeone/kubeone.yaml -t terraform/tf.json
+
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "lemarrecthomas@gmail.com"
+          git config --local user.name "Leestalion"
+          git add github-actions-test-kubeconfig
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
