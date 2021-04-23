@@ -18,3 +18,4 @@ jobs:
         run: |
           kubectl --kubeconfig=github-actions-test-kubeconfig get nodes
           kubectl --kubeconfig=github-actions-test-kubeconfig get -n kube-system machinedeployment
+          kubectl --kubeconfig=github-actions-test-kubeconfig apply -f nginx.deployment.yml
