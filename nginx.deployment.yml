@@ -1,38 +1,19 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ReplicationController
 metadata:
-  name: my-nginx
-  labels:
-    app: my-nginx
+  name: nginx
 spec:
   replicas: 2
   selector:
-    matchLabels:
-      app: my-nginx
+    app: nginx
   template:
     metadata:
+      name: nginx
       labels:
-        app: my-nginx
+        app: nginx
     spec:
       containers:
-      - name: my-nginx
-        image: nginx:alpine
+      - name: nginx
+        image: nginx
         ports:
         - containerPort: 80
-        resources:
-          limits:
-            memory: "128Mi" #128 MB
-            cpu: "200m" #200 millicpu (.2 cpu or 20% of the cpu)
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-nginx
-  labels:
-    run: my-nginx
-spec:
-  ports:
-  - port: 80
-    protocol: TCP
-  selector:
-    run: my-nginx
