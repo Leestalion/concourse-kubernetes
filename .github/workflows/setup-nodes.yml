@@ -23,3 +23,4 @@ jobs:
       - name: describe cluster
         run: |
           kubectl --kubeconfig=github-actions-test-kubeconfig describe pods
+          kubectl --kubeconfig=github-actions-test-kubeconfig describe services
