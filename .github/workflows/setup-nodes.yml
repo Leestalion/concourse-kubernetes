@@ -14,7 +14,12 @@ jobs:
         run: |
           curl -sfL get.kubeone.io | sh
       
-      - name: see pods
+      - name: apply cluster
         run: |
           kubectl --kubeconfig=github-actions-test-kubeconfig get nodes
           kubectl --kubeconfig=github-actions-test-kubeconfig get -n kube-system machinedeployment
+          kubectl --kubeconfig=github-actions-test-kubeconfig apply -f nginx.deployment.yml
+          
+      - name: describe cluster
+        run: |
+          kubectl --kubeconfig=github-actions-test-kubeconfig describe pods
