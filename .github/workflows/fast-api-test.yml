@@ -1,0 +1,21 @@
+name: fast-api-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: install kubeone
+        run: |
+          curl -sfL get.kubeone.io | sh
+
+      - name: build docker image
+        run: docker build -t fast-api-image -f .docker/Dockerfile .
+        
+      - name: apply kubernetes cluster
+        run: kubernetes apply -f .k8s/fast_api_container.yml
