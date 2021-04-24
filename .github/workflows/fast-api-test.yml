@@ -18,4 +18,4 @@ jobs:
         run: docker build -t fast-api-image -f .docker/Dockerfile .
         
       - name: apply kubernetes cluster
-        run: kubectl apply -f .k8s/fast_api_container.yml
+        run: kubectl apply --kubeconfig=github-actions-test-kubeconfig -f .k8s/fast_api_container.yml
